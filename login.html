@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紀念日問題</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffe6e6, #ffcccc);
+            color: #ff4d4d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        input {
+            padding: 5px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #e63939;
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ 我們的紀念日係幾時？(dd/mm/yyyy) ❤️</h1>
+    <input type="text" id="answer" placeholder="請輸入答案">
+    <button class="button" onclick="checkAnswer()">提交答案</button>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById("answer").value.trim();
+            if (answer === "12/10/2024") {
+                window.location.href = "detail.html";  // 跳轉到 detail.html
+            } else {
+                alert("答案錯誤，再試一次！");
+            }
+        }
+    </script>
+</body>
+</html>

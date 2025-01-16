@@ -50,7 +50,7 @@
         }
         .prize-image {
             opacity: 0;
-            transition: opacity 2s;
+            animation: fadeIn 2s forwards;
             margin-top: 20px;
             width: 300px;
             border: 2px solid #ffcccc;
@@ -59,6 +59,18 @@
         .prize-image.show {
             opacity: 1;
         }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         .error-image {
             width: 300px;
             margin-top: 20px;
@@ -75,6 +87,13 @@
             margin-bottom: 20px;
             font-weight: bold;
         }
+
+        .waiting-message {
+            font-size: 1.5em;
+            color: #ff6347;
+            margin-top: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -86,20 +105,21 @@
         <button class="button" onclick="checkAnswer()">提交答案</button>
         <p id="feedback" class="hidden" style="color: green; margin-top: 10px;">答啱咗！可以抽獎啦！</p>
         <p id="wrongFeedback" class="hidden" style="color: red; margin-top: 10px;">答錯啦！再加油啦BB！</p>
-        <img id="errorImage1" src="10.png" alt="錯誤圖片1" class="hidden error-image">
-        <img id="errorImage2" src="20.png" alt="錯誤圖片2" class="hidden error-image">
-        <img id="errorImage3" src="30.png" alt="錯誤圖片3" class="hidden error-image">
+        <img id="errorImage1" src="image/10.png" alt="錯誤圖片1" class="hidden error-image">
+        <img id="errorImage2" src="image/20.png" alt="錯誤圖片2" class="hidden error-image">
+        <img id="errorImage3" src="image/30.png" alt="錯誤圖片3" class="hidden error-image">
     </div>
     <div id="lottery">
         <button id="lotteryButton" class="button" onclick="startLottery()">抽獎</button>
         <div id="prize" class="hidden">
             <p class="prize">🎉 恭喜你中獎！🎉</p>
-            <p>小弟精心挑選 SWAROVSKI 手鏈 💎</p>
-            <img id="prizeImage" src="image.png" alt="Swarovski 手鏈" class="prize-image">
+            <p>💎 小弟精心挑選 SWAROVSKI 手鏈 💎</p>
+            <img id="prizeImage" src="image/image.png" alt="Swarovski 手鏈" class="prize-image">
             <div style="margin-top: 20px;">
                 <button id="nextPageButton" class="button" onclick="goToNextPage()">到下一頁</button>
             </div>
         </div>
+        <p id="waitingMessage" class="hidden waiting-message">合埋眼5秒後打開...</p>
     </div>
 
     <script>
@@ -168,23 +188,38 @@
         }
 
         function startLottery() {
+            let countdownTime = 5;
+            const waitingMessage = document.getElementById("waitingMessage");
+
+            function updateMessage() {
+                waitingMessage.innerHTML = `合埋眼${countdownTime}秒後打開...`;
+            }
+
+            document.getElementById("waitingMessage").classList.remove("hidden");
+
             document.getElementById("questionSection").classList.add("hidden");
             document.getElementById("countdown").classList.add("hidden");
             document.getElementById("lottery").classList.add("hidden");
             document.getElementById("lotteryButton").style.display = "none";
 
-            const prizeDiv = document.getElementById("prize");
-            const prizeImage = document.getElementById("prizeImage");
-            prizeDiv.classList.remove("hidden");
-
-            setTimeout(() => prizeImage.classList.add("show"), 500);
-
+            const countdownInterval = setInterval(function() {
+                if (countdownTime > 0) {
+                    updateMessage();
+                    countdownTime--;
+                } else {
+                    clearInterval(countdownInterval);
+                    const prizeDiv = document.getElementById("prize");
+                    const prizeImage = document.getElementById("prizeImage");
+                    prizeDiv.classList.remove("hidden");
+                    setTimeout(() => prizeImage.classList.add("show"), 500);
+                    document.getElementById("waitingMessage").classList.add("hidden");
+                }
+            }, 1000);
         }
 
         function goToNextPage() {
-             window.location.href = "love_message.html";
-}
-
+            window.location.href = "html/love_message.html";
+        }
     </script>
 </body>
 </html>

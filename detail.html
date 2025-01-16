@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紀念日祝福</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffe6e6, #ffcccc);
+            color: #ff4d4d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2em;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        .message {
+            font-size: 1.5em;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        .message:nth-child(2) {
+            animation-delay: 1s;
+        }
+        .message:nth-child(3) {
+            animation-delay: 2s;
+        }
+        #blessing {
+            animation-delay: 3s; /* 控制這個段落的顯示延遲時間 */
+        }
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            width: 50px;
+            height: 50px;
+            animation: floatUp 10s infinite ease-in-out;
+            z-index: -1;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-150vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+            animation-delay: 4s;
+        }
+
+        .button:hover {
+            background-color: #e63939;
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ 一齊日數 ❤️</h1>
+    <p id="timeDifference" class="message">計算中...</p>
+    <p id="timeInMonths" class="message"></p>
+    <p id="blessing" class="message">希望我地一齊每一天都幸幸福福！</p>
+
+    <!-- 按鈕：跳轉到 gift.html -->
+    <button class="button" onclick="goToGiftPage()">獎勵Me</button>
+
+    <script>
+        function calculateTime() {
+            const startDate = new Date("2024-10-12");  // 這裡填入紀念日的日期
+            const today = new Date();
+
+            const timeDiff = today - startDate;
+
+            // 計算天數
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+            // 計算月份
+            const months = today.getMonth() - startDate.getMonth() + 
+                (12 * (today.getFullYear() - startDate.getFullYear()));
+
+            // 顯示相識天數
+            document.getElementById("timeDifference").innerText = `我地已經在一齊日數了 ${days} 天！`;
+
+            // 顯示相識月份數
+            document.getElementById("timeInMonths").innerText = `我地已經在一齊了 ${months} 個月！`;
+        }
+
+        window.onload = function() {
+            calculateTime();
+            createHearts();
+        }
+
+        function createHearts() {
+            const body = document.body;
+            for (let i = 0; i < 50; i++) { 
+                const heart = document.createElement('img');
+                heart.className = 'heart';
+                heart.src = 'image/heart.png';  // 確保這個圖像路徑正確
+                const randomX = Math.random() * 100; 
+                const randomDelay = Math.random() * 10; 
+                const randomDuration = Math.random() * 5 + 5; 
+                const randomSize = Math.random() * 20 + 30;
+                heart.style.left = `${randomX}%`;
+                heart.style.animationDelay = `${randomDelay}s`;
+                heart.style.animationDuration = `${randomDuration}s`;
+                heart.style.width = `${randomSize}px`;
+                heart.style.height = `${randomSize}px`;
+                body.appendChild(heart);
+            }
+        }
+
+        function goToGiftPage() {
+            window.location.href = "gift.html"; // 跳轉到 gift.html
+        }
+    </script>
+</body>
+</html>
