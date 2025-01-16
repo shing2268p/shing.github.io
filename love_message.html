@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情人節心底話</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #fff5f5, #ffe6e6);
+            color: #ff4d4d;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            font-size: 1.5em;
+            line-height: 1.8;
+            margin: 20px 0;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+        p:nth-child(2) {
+            animation-delay: 1s;
+        }
+        p:nth-child(3) {
+            animation-delay: 2s;
+        }
+        p:nth-child(4) {
+            animation-delay: 3s;
+        }
+        p:nth-child(5) {
+            animation-delay: 4s;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 5s;
+        }
+        .button:hover {
+            background-color: #e63939;
+        }
+        .heart {
+            position: absolute;
+            bottom: -50px; 
+            width: 50px;
+            height: 50px;
+            animation: floatUp 10s infinite ease-in-out;
+            z-index: -1; 
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-150vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ 給最重要的你 ❤️</h1>
+    <p>唔知你係情人節前定情人節後答啱，希望你鍾意呢份禮物🎁</p>
+    <p>知你有儀式感，同埋感覺上你會想交換禮物，所以我先下手為強，逼你一定要同我交換禮物🤭</p>
+    <p>所以你知點解我係咁問你朋友送嘅禮物係咪帶係手呢🥲</p>
+    <p>不過我都唔係好識買，希望你鍾意❤️</p>
+
+    <script>
+        function createHearts() {
+            const body = document.body;
+            for (let i = 0; i < 50; i++) { 
+                const heart = document.createElement('img');
+                heart.className = 'heart';
+                heart.src = 'heart.png'; 
+                const randomX = Math.random() * 100; 
+                const randomDelay = Math.random() * 10; 
+                const randomDuration = Math.random() * 5 + 5; 
+                const randomSize = Math.random() * 20 + 30;
+                heart.style.left = `${randomX}%`;
+                heart.style.animationDelay = `${randomDelay}s`;
+                heart.style.animationDuration = `${randomDuration}s`;
+                heart.style.width = `${randomSize}px`;
+                heart.style.height = `${randomSize}px`;
+                body.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
+</body>
+</html>
