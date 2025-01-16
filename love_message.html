@@ -101,13 +101,16 @@
     <p>所以你知點解我係咁問你朋友送嘅禮物係咪帶係手呢🥲</p>
     <p>不過我都唔係好識買，希望你鍾意❤️</p>
 
+    <!-- Button to navigate to login.html -->
+    <a href="login.html" class="button">進入紀念日頁面</a>
+
     <script>
         function createHearts() {
             const body = document.body;
             for (let i = 0; i < 50; i++) { 
                 const heart = document.createElement('img');
                 heart.className = 'heart';
-                heart.src = 'image/heart.png'; 
+                heart.src = 'image/heart.png';  
                 const randomX = Math.random() * 100; 
                 const randomDelay = Math.random() * 10; 
                 const randomDuration = Math.random() * 5 + 5; 

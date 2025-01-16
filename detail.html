@@ -36,7 +36,7 @@
             animation-delay: 2s;
         }
         #blessing {
-            animation-delay: 3s; /* 控制這個段落的顯示延遲時間 */
+            animation-delay: 3s; 
         }
         .heart {
             position: absolute;
@@ -95,29 +95,24 @@
     <p id="timeDifference" class="message">計算中...</p>
     <p id="timeInMonths" class="message"></p>
     <p id="blessing" class="message">希望我地一齊每一天都幸幸福福！</p>
+    <p id="blessing" class="message">以後呢一頁都會計住我地一齊過嘅每一日</p>
 
-    <!-- 按鈕：跳轉到 gift.html -->
-    <button class="button" onclick="goToGiftPage()">獎勵Me</button>
 
     <script>
         function calculateTime() {
-            const startDate = new Date("2024-10-12");  // 這裡填入紀念日的日期
+            const startDate = new Date("2024-10-12"); 
             const today = new Date();
 
             const timeDiff = today - startDate;
 
-            // 計算天數
             const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-            // 計算月份
             const months = today.getMonth() - startDate.getMonth() + 
                 (12 * (today.getFullYear() - startDate.getFullYear()));
 
-            // 顯示相識天數
-            document.getElementById("timeDifference").innerText = `我地已經在一齊日數了 ${days} 天！`;
+            document.getElementById("timeDifference").innerText = `我地已經一齊 ${days} 日！`;
 
-            // 顯示相識月份數
-            document.getElementById("timeInMonths").innerText = `我地已經在一齊了 ${months} 個月！`;
+            document.getElementById("timeInMonths").innerText = `我地已經一齊 ${months} 個月！`;
         }
 
         window.onload = function() {
@@ -130,7 +125,7 @@
             for (let i = 0; i < 50; i++) { 
                 const heart = document.createElement('img');
                 heart.className = 'heart';
-                heart.src = 'image/heart.png';  // 確保這個圖像路徑正確
+                heart.src = 'image/heart.png'; 
                 const randomX = Math.random() * 100; 
                 const randomDelay = Math.random() * 10; 
                 const randomDuration = Math.random() * 5 + 5; 
@@ -144,9 +139,6 @@
             }
         }
 
-        function goToGiftPage() {
-            window.location.href = "gift.html"; // 跳轉到 gift.html
-        }
     </script>
 </body>
 </html>
