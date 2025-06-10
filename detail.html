@@ -99,7 +99,6 @@
 <body>
     <h1>❤️ 一齊日數 ❤️</h1>
     <p id="timeDifference" class="message">計算中...</p>
-    <p id="timeInMonths" class="message"></p>
     <p id="blessing" class="message">希望我地一齊每一天都幸幸福福！</p>
     <p id="blessing" class="message">以後呢一頁都會計住我地一齊過嘅每一日</p>
     <p id="blessing2" class="message">今年係你第一次同我過生日</p>
@@ -117,9 +116,6 @@
             const timeDiff = today - startDate;
 
             const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-            const months = today.getMonth() - startDate.getMonth() + 
-                (12 * (today.getFullYear() - startDate.getFullYear()));
 
             document.getElementById("timeDifference").innerText = `我地已經一齊 ${days} 日！`;
 
